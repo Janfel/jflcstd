@@ -12,3 +12,5 @@
 #        define JFLCSTD_PUBLIC
 #    endif
 #endif
+
+typedef JFLCSTD_PUBLIC struct Stack { void *data, struct Stack *next, size_t length_, } Stack;
