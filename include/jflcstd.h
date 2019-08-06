@@ -1,16 +1,4 @@
 #pragma once
-#if defined _WIN32 || defined __CYGWIN__
-#    ifdef BUILDING_JFLCSTD
-#        define JFLCSTD_PUBLIC __declspec(dllexport)
-#    else
-#        define JFLCSTD_PUBLIC __declspec(dllimport)
-#    endif
-#else
-#    ifdef BUILDING_JFLCSTD
-#        define JFLCSTD_PUBLIC __attribute__((visibility("default")))
-#    else
-#        define JFLCSTD_PUBLIC
-#    endif
-#endif
+#include "macros.h"
 
-int JFLCSTD_PUBLIC jfl_func();
+#include "./stack.h"
