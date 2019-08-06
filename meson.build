@@ -2,6 +2,8 @@ project('jflcstd', 'c',
   version : '0.1',
   default_options : ['warning_level=3'])
 
+include_dirs = include_directories('include')
+
 # These arguments are only used to build the shared library
 # not the executables that use the library.
 lib_args = ['-DBUILDING_JFLCSTD']
@@ -9,6 +11,7 @@ lib_args = ['-DBUILDING_JFLCSTD']
 lib_src = 'src/jflcstd.c'
 shlib = shared_library('jflcstd',
   sources : lib_src,
+  include_directories : include_dirs,
   install : true,
   c_args : lib_args,
   gnu_symbol_visibility : 'hidden',
@@ -17,6 +20,7 @@ shlib = shared_library('jflcstd',
 test_src = 'test/jflcstd_test.c'
 test_exe = executable('jflcstd',
   sources : test_src,
+  include_directories : include_dirs,
   link_with : shlib,
 )
 test('jflcstd', test_exe)
