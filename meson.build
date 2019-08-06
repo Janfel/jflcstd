@@ -8,7 +8,7 @@ include_dirs = include_directories('include')
 # not the executables that use the library.
 lib_args = ['-DBUILDING_JFLCSTD']
 
-lib_src = 'src/jflcstd.c'
+lib_src = ['src/jflcstd.c', 'src/stack.c']
 shlib = shared_library('jflcstd',
   sources : lib_src,
   include_directories : include_dirs,
