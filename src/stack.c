@@ -30,13 +30,6 @@ size_t jfl_Stack_length(Stack **stack) {
 
 void jfl_Stack_free(Stack **stack) {
     if (!stack) return;
-    if (!*stack) return;
-    jfl_Stack_free(&((*stack)->next));
-    free(*stack);
-}
-
-void jfl_Stack_free_iter(Stack **stack) {
-    if (!stack) return;
     Stack *current = *stack;
     Stack *next;
     while (current) {
