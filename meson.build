@@ -17,13 +17,17 @@ shlib = shared_library('jflcstd',
   gnu_symbol_visibility : 'hidden',
 )
 
-test_src = 'test/jflcstd_test.c'
-test_exe = executable('jflcstd',
-  sources : test_src,
+test_exe = executable('jflcstd', 'test/jflcstd_test.c',
   include_directories : include_dirs,
   link_with : shlib,
 )
 test('jflcstd', test_exe)
+
+test_exe = executable('stack', 'test/stack_test.c',
+  include_directories : include_dirs,
+  link_with : shlib,
+)
+test('stack', test_exe)
 
 # Make this library usable as a Meson subproject.
 jflcstd_dep = declare_dependency(
