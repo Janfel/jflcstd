@@ -6,30 +6,36 @@ project('jflcstd', 'c',
 # not the executables that use the library.
 lib_args = ['-DBUILDING_JFLCSTD']
 
-shlib = shared_library('jflcstd', 'jflcstd.c',
+lib_src = 'src/jflcstd.c'
+shlib = shared_library('jflcstd',
+  sources : lib_src,
   install : true,
   c_args : lib_args,
   gnu_symbol_visibility : 'hidden',
 )
 
-test_exe = executable('jflcstd', 'jflcstd_test.c',
-  link_with : shlib)
+test_src = 'jflcstd_test.c'
+test_exe = executable('jflcstd',
+  sources : test_src,
+  link_with : shlib,
+)
 test('jflcstd', test_exe)
 
 # Make this library usable as a Meson subproject.
 jflcstd_dep = declare_dependency(
-  include_directories: include_directories('.'),
+  include_directories: include_directories('include'),
   link_with : shlib)
 
 # Make this library usable from the system's
 # package manager.
-install_headers('jflcstd.h', subdir : 'jflcstd')
+inst_hdrs = 'include/jflcstd.h'
+install_headers(inst_hdrs, subdir : 'jflcstd')
 
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(
   name : 'jflcstd',
   filebase : 'jflcstd',
-  description : 'Meson sample project.',
+  description : 'JFL C Standard Library',
   subdirs : 'jflcstd',
   libraries : shlib,
   version : '0.1',
