@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int push_and_pop() {
-    Stack *stack = jfl_Stack_new();
+    struct Stack *stack = jfl_Stack_new();
     jfl_Stack_push(&stack, (void *) 1);
     jfl_Stack_push(&stack, (void *) 2);
     jfl_Stack_push(&stack, (void *) 3);
@@ -20,10 +20,10 @@ int push_and_pop() {
 }
 
 void freeing() {
-    Stack *stack1 = jfl_Stack_new();
+    struct Stack *stack1 = jfl_Stack_new();
     jfl_Stack_free(&stack1);
 
-    Stack *stack2 = jfl_Stack_new();
+    struct Stack *stack2 = jfl_Stack_new();
     int *data2 = calloc(5, sizeof(int));
     jfl_Stack_push(&stack2, (void *) 5);
     jfl_Stack_free(&stack2);
@@ -32,7 +32,7 @@ void freeing() {
 }
 
 int length() {
-    Stack *stack = jfl_Stack_new();
+    struct Stack *stack = jfl_Stack_new();
     if (jfl_Stack_length(&stack) != 0) return 8;
     jfl_Stack_push(&stack, (void *) 1);
     if (jfl_Stack_length(&stack) != 1) return 9;

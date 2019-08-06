@@ -2,10 +2,12 @@
 
 #include <stdlib.h>
 
-Stack *jfl_Stack_new() { return NULL; }
+struct Stack *jfl_Stack_new() {
+    return NULL;
+}
 
-int jfl_Stack_push(Stack **stack, void *data) {
-    Stack *new_block = malloc(sizeof(Stack));
+int jfl_Stack_push(struct Stack **stack, void *data) {
+    struct Stack *new_block = malloc(sizeof(struct Stack));
     if (!new_block) return 1;
     new_block->data = data;
     new_block->next = *stack;
@@ -14,8 +16,8 @@ int jfl_Stack_push(Stack **stack, void *data) {
     return 0;
 }
 
-void *jfl_Stack_pop(Stack **stack) {
-    Stack *popped = *stack;
+void *jfl_Stack_pop(struct Stack **stack) {
+    struct Stack *popped = *stack;
     if (!popped) return NULL;
     void *data = popped->data;
     *stack = popped->next;
@@ -23,15 +25,15 @@ void *jfl_Stack_pop(Stack **stack) {
     return data;
 }
 
-size_t jfl_Stack_length(Stack **stack) {
+size_t jfl_Stack_length(struct Stack **stack) {
     if (!*stack) return 0;
     return (*stack)->length_;
 }
 
-void jfl_Stack_free(Stack **stack) {
+void jfl_Stack_free(struct Stack **stack) {
     if (!stack) return;
-    Stack *current = *stack;
-    Stack *next;
+    struct Stack *current = *stack;
+    struct Stack *next;
     while (current) {
         next = current->next;
         free(current);
