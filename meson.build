@@ -8,7 +8,7 @@ include_dirs = include_directories('include')
 # not the executables that use the library.
 lib_args = ['-DBUILDING_JFLCSTD']
 
-lib_src = ['src/jflcstd.c', 'src/stack.c']
+lib_src = 'src/stack.c'
 shlib = shared_library('jflcstd',
   sources : lib_src,
   include_directories : include_dirs,
@@ -17,11 +17,6 @@ shlib = shared_library('jflcstd',
   gnu_symbol_visibility : 'hidden',
 )
 
-test_exe = executable('jflcstd', 'test/jflcstd_test.c',
-  include_directories : include_dirs,
-  link_with : shlib,
-)
-test('jflcstd', test_exe)
 
 test_exe = executable('stack', 'test/stack_test.c',
   include_directories : include_dirs,
