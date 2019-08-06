@@ -14,7 +14,7 @@ shlib = shared_library('jflcstd',
   gnu_symbol_visibility : 'hidden',
 )
 
-test_src = 'jflcstd_test.c'
+test_src = 'test/jflcstd_test.c'
 test_exe = executable('jflcstd',
   sources : test_src,
   link_with : shlib,
