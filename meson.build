@@ -31,7 +31,7 @@ jflcstd_dep = declare_dependency(
 
 # Make this library usable from the system's
 # package manager.
-inst_hdrs = 'include/jflcstd.h'
+inst_hdrs = ['include/jflcstd.h','include/stack.h']
 install_headers(inst_hdrs, subdir : 'jflcstd')
 
 pkg_mod = import('pkgconfig')
